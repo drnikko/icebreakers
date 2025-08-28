@@ -1,0 +1,118 @@
+body {
+  font-family: 'Courier New', monospace;
+  background:
+    /* Frosty gradient */
+    linear-gradient(to bottom, #c5e7fa 0%, #d6f1fa 30%, #e6f7fb 80%, #b0d2e2 100%);
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+}
+
+/* Dripping ice effect at the top using a SVG data URI in a pseudo-element */
+body::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  right: 0;
+  height: 120px;
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="120" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 Q50,40 100,32 Q150,20 200,60 Q250,90 300,36 Q350,12 400,52 Q450,100 500,28 Q550,8 600,42 Q650,80 700,26 Q750,0 800,20 L800,120 L0,120 Z" fill="%23e6f7fb"/><path d="M0,10 Q50,50 100,42 Q150,30 200,70 Q250,110 300,46 Q350,22 400,62 Q450,110 500,38 Q550,18 600,62 Q650,100 700,36 Q750,0 800,30 L800,120 L0,120 Z" fill="%23c5e7fa" opacity="0.6"/></svg>');
+  background-repeat: repeat-x;
+  background-size: 800px 120px;
+  z-index: 1;
+}
+
+/* Ensure main content is above the dripping ice */
+body > * {
+  position: relative;
+  padding: 30px;
+  z-index: 2;
+}
+
+/* Optional: retro-glass effect on main container */
+.container, #question {
+  background: rgba(255,255,255,0.5);
+  box-shadow: 0 8px 24px rgba(70,170,230,0.15);
+  border-radius: 14px;
+  padding: 1.5em 1em;
+  margin: 15em 10em 0em 10em;
+  backdrop-filter: blur(2px);
+}
+
+
+#question {
+  margin-top: 2em;
+  font-size: 1.45em;
+  font-weight: bold;
+  color: #1087b1;
+  padding: 1.2em 1.1em;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.70);
+  box-shadow:
+    0 2px 22px 2px rgba(180,230,255,0.24),
+    0 0 0 8px rgba(160, 220, 255, 0.09) inset;
+  text-shadow:
+    0 2px 18px #c6f2ff,
+    0 1px 0px #fff,
+    0 0px 2px #51c8e7;
+  letter-spacing: 0.01em;
+  transition: box-shadow 0.2s, background 0.2s;
+
+  /* Frosted glass effect for supported browsers */
+  backdrop-filter: blur(4px) saturate(1.17);
+}
+
+@media (max-width: 700px) {
+  #question {
+    font-size: 1.1em;
+    padding: 1em 0.8em;
+  }
+}
+
+
+
+
+/* Make headings stand out retro style */
+h1 {
+  font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
+  color: #1087b1;
+  text-shadow: 0 2px 10px #e6f7fb, 0 0px 2px #b0d2e2;
+  letter-spacing: 2px;
+}
+
+
+#getQuestionBtn {
+  background: linear-gradient(180deg, #e6f7fb 0%, #c5e7fa 70%, #b0d2e2 100%);
+  border: none;
+  border-radius: 8px;
+  color: #1087b1;
+  font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
+  font-size: 1.1em;
+  padding: 0.5em 1.5em;
+  box-shadow: 0 2px 14px rgba(70,170,230,0.18), 0 0 0 2px #e2f6fc inset;
+  letter-spacing: 1px;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+#getQuestionBtn:hover,
+#getQuestionBtn:focus {
+  background: linear-gradient(180deg, #cceafb 0%, #8ed0f0 100%);
+  box-shadow: 0 4px 20px rgba(70,200,255,0.22), 0 0 0 3px #97e2ff inset;
+  transform: translateY(-2px) scale(1.045);
+}
+
+/* Optional: frosty shimmer effect (like sparkle on ice) */
+#getQuestionBtn::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 65%, rgba(255,255,255,0.39) 80%, transparent 95%);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}

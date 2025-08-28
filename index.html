@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Icebreaker Question Generator</title>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div class="container">
+  <h1>🧊 Break the Ice 🧊</h1>
+  <div id="rangeInfo"></div>
+  <p><label for="numberInput">❄️ Enter any number:</label></p>
+  <input id="numberInput" type="number" />
+  <button id="getQuestionBtn">Get Question</button>
+</div>
+  <div id="question"></div>
+
+  <script src="questions.js"></script>
+  <script>
+    // Show info about modulo mapping & question count
+    function updateRangeInfo() {
+      const count = icebreakerQuestions.length;
+      document.getElementById('rangeInfo').textContent =
+        `There are ~${count}~ questions. Enter any number (positive or negative); the same number will always give the same question.`;
+    }
+
+    // Deterministic question selection with modulo mapping
+    function getQuestionForNumber(num) {
+      const n = Number(num);
+      // Math.abs keeps it in [0, length-1] even for negatives
+      const idx = Math.abs(n) % icebreakerQuestions.length;
+      return icebreakerQuestions[idx];
+    }
+
+    document.getElementById('getQuestionBtn').addEventListener('click', function() {
+      const inputVal = document.getElementById('numberInput').value;
+      if (inputVal === '' || isNaN(inputVal)) {
+        document.getElementById('question').textContent = 'Please enter a valid number.';
+        return;
+      }
+      const q = getQuestionForNumber(inputVal);
+      document.getElementById('question').textContent = q;
+    });
+
+    // Initialize info
+    updateRangeInfo();
+  </script>
+</body>
+</html>
